@@ -14,5 +14,7 @@ contract OnlyMEVToken is ERC20, MEV {
         address from,
         address to,
         uint256 amount
-    ) internal virtual override onlyMEV {}
+    ) internal virtual override onlyMEV {
+        super._beforeTokenTransfer(from, to, amount);
+    }
 }

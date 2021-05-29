@@ -14,5 +14,7 @@ contract NoMEVToken is ERC20, MEV {
         address from,
         address to,
         uint256 amount
-    ) internal virtual override noMEV {}
+    ) internal virtual override noMEV {
+        super._beforeTokenTransfer(from, to, amount);
+    }
 }
