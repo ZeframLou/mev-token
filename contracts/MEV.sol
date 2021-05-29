@@ -8,8 +8,8 @@ contract MEV {
         _;
     }
 
-    modifier noMEV {
-        require(tx.gasprice > 0, "fuck you bot");
+    modifier noMEV(uint256 minGasPrice) {
+        require(tx.gasprice > minGasPrice, "fuck you bot");
         _;
     }
 }

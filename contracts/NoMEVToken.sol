@@ -6,6 +6,8 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "./MEV.sol";
 
 contract NoMEVToken is ERC20, MEV {
+    uint256 public constant MIN_GASPRICE = 10 gwei;
+
     constructor(string memory _name, string memory _symbol)
         ERC20(_name, _symbol)
     {}
@@ -14,7 +16,7 @@ contract NoMEVToken is ERC20, MEV {
         address from,
         address to,
         uint256 amount
-    ) internal virtual override noMEV {
+    ) internal virtual override noMEV(MIN_GASPRICE) {
         super._beforeTokenTransfer(from, to, amount);
     }
 }
